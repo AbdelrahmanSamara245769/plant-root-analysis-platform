@@ -1,4 +1,4 @@
-# Plant Root Analysis Platform (cv4)
+# Plant Root Analysis Platform
 
 This is a production MLOps system for NPEC, the Netherlands Plant Eco-phenotyping Centre. It takes a grayscale petri dish scan holding five seedlings and finds each plant's main root tip, in pixels and millimetres, with a confidence score.
 
@@ -57,7 +57,7 @@ Architecture diagrams:
 | Registered models (same evaluation set) | Version 2 F1 0.849, then version 3 (sweep winner) **0.855** |
 | Endpoint latency, one plate | 5.65 s average (7.39 s first request) |
 | Endpoint throughput | **10.6 requests/min** per instance, about 30 at full scale |
-| Cloud cost for the block | **€1.45** actual, against a €75 reconstructed estimate |
+| Cloud cost for the project | **€1.45** actual, against a €75 reconstructed estimate |
 
 Training ran on a shared university cluster that isn't billed to the team, which explains most of the cost difference. [docs/cost_analysis.md](docs/cost_analysis.md) breaks it down per service, and [docs/endpoint_performance.md](docs/endpoint_performance.md) covers the endpoint measurements and the rollout strategies.
 
@@ -66,7 +66,7 @@ Training ran on a shared university cluster that isn't billed to the team, which
 In a team of five, my parts were:
 
 - **Scrum master.** I managed the git-flow branching strategy and merged over 30 pull requests.
-- **Base pipeline.** My Block B pipeline was selected as the team's base: it had the highest F1 and the best Kaggle rank ([docs/pipeline_selection.md](docs/pipeline_selection.md)). I turned it into a tested Python package, with unit and integration tests.
+- **Base pipeline.** My notebook pipeline was selected as the team's base: it had the highest F1 and the best Kaggle rank ([docs/pipeline_selection.md](docs/pipeline_selection.md)). I turned it into a tested Python package, with unit and integration tests.
 - **Training code** (`src/cv4/training/`): the model, loss functions, metrics, data loading, training, evaluation, conditional registration and MLflow tracking.
 - **Azure ML pipeline.** I built all four components, their environments and the submission scripts. I validated each component on its own before running the pipeline end to end.
 - **Hyperparameter sweeps** over learning rate, batch size and augmentation, with automatic evaluation and registration of the best model.

@@ -1,6 +1,6 @@
 # Azure Cost Data
 
-Raw Azure Cost Management exports for the CV4 project. These files record actual cloud spend and feed the cost analysis report at [`../cost_analysis.md`](../cost_analysis.md).
+Raw Azure Cost Management exports for this project. These files record actual cloud spend and feed the cost analysis report at [`../cost_analysis.md`](../cost_analysis.md).
 
 > **Note:** `*.csv` is globally git-ignored. This folder has an explicit `!docs/cost_data/*.csv` exception in `.gitignore` so exports committed here are tracked normally.
 
@@ -24,7 +24,7 @@ Future exports follow the naming pattern: `azure_cost_export_<start>_<end>.csv`
 | Subscription | `<subscription-id>` |
 | Resource group | the shared university resource group (shared across all BUAS year-2 teams) |
 | Azure ML workspace | the team's Azure ML workspace |
-| Scope filter | CV4 deployment resources (VMs, load balancer, storage, networking) |
+| Scope filter | This project's deployment resources (VMs, load balancer, storage, networking) |
 | Date range | 2026-04-13 to 2026-06-13 |
 | Granularity | Monthly (usage dates: `2026-05-01`, `2026-06-01`) |
 | Grouped by | Service name |
@@ -54,17 +54,17 @@ Aggregated across both usage months. Primary figures in EUR; USD shown for refer
 
 ## Caveats
 
-**Shared resource group:** the shared university resource group is shared across all BUAS year-2 teams. The export is filtered to CV4 resources only; figures from other teams are excluded.
+**Shared resource group:** the shared university resource group is shared across all BUAS year-2 teams. The export is filtered to this project's resources only; figures from other teams are excluded.
 
-**Compute is not reflected here:** Most ML training runs on the shared the shared Kubernetes GPU cluster Kubernetes cluster (namespace `cv4`), which is not billed as per-team Azure compute. This export covers deployment infrastructure only (VMs, Load Balancer, Storage, Networking) and does not include Azure ML, Container Registry, or Key Vault line items.
+**Compute is not reflected here:** Most ML training runs on a shared Kubernetes GPU cluster, which is not billed as per-team Azure compute. This export covers deployment infrastructure only (VMs, Load Balancer, Storage, Networking) and does not include Azure ML, Container Registry, or Key Vault line items.
 
-**Granularity:** Monthly only -- two rows per service across the export period. Suitable for a block-level total but not for daily trend analysis.
+**Granularity:** Monthly only -- two rows per service across the export period. Suitable for a project-level total but not for daily trend analysis.
 
 ---
 
 ## Real cost estimation (standard pay-as-you-go pricing)
 
-The figures in the export above are artificially low because the project runs on the university subscription: VMs are only powered on intermittently, training happens on the shared the shared Kubernetes GPU cluster Kubernetes cluster (not billed per team), and several services (Azure ML compute, Container Registry, Key Vault) do not appear as line items at all. To give a realistic picture of what this deployment would cost as a standalone production system, the table below estimates a full month at standard Azure pay-as-you-go list prices.
+The figures in the export above are artificially low because the project runs on the university subscription: VMs are only powered on intermittently, training happens on a shared Kubernetes GPU cluster (not billed per team), and several services (Azure ML compute, Container Registry, Key Vault) do not appear as line items at all. To give a realistic picture of what this deployment would cost as a standalone production system, the table below estimates a full month at standard Azure pay-as-you-go list prices.
 
 ### Assumptions
 
@@ -145,7 +145,7 @@ The cost-at-scale table reuses the per-service prices above. Its usage assumptio
 ## How to produce a new export
 
 1. Go to **Azure Portal** -> **Cost Management + Billing** -> **Cost analysis**.
-2. Set the scope to subscription the shared university resource group (`<subscription-id>`). If subscription-level access is not available, fall back to the resource group the shared university resource group scope.
+2. Set the scope to the subscription (`<subscription-id>`). If subscription-level access is not available, fall back to the shared university resource group scope.
 3. Set a **custom date range** covering the period you want to capture.
 4. Add a **Resource filter** scoped to the team's Azure ML workspace and its associated resources (storage account, container registry, key vault, application insights). Use a tag filter if team tags are available.
 5. Set **Group by** to `Service name`.

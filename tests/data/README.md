@@ -7,7 +7,7 @@ Test images and expected outputs used by integration tests
 
 | File | Purpose |
 |---|---|
-| `valid_dish.png` | Real petri dish image from the Block B test set (client data, not included; the integration tests are skipped without it). The full pipeline should process it successfully and return 5 plant entries with at least 4 root detections. |
+| `valid_dish.png` | Real petri dish image from the test set (client data, not included; the integration tests are skipped without it). The full pipeline should process it successfully and return 5 plant entries with at least 4 root detections. |
 | `corrupt.png` | Intentionally invalid file (random bytes saved with a `.png` extension). Used to verify the pipeline raises a clear error on unreadable input. |
 
 ## Notes
