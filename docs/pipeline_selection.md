@@ -2,7 +2,7 @@
 
 ## Comparison table
 
-All five team members' Block B pipelines were compared on the following criteria:
+All five team members' notebook pipelines were compared on the following criteria:
 
 | Metric | Pipeline A | Pipeline B | Pipeline C | Pipeline D | Pipeline E |
 |--------|--------|--------|--------|--------|--------|

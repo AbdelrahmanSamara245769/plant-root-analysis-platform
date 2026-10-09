@@ -1,4 +1,4 @@
-# Cloud Cost Analysis — CV4 Block D
+# Cloud Cost Analysis
 
 **Design, planning, and cost-effective resource management**
 
